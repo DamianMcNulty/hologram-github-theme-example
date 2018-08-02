@@ -9,17 +9,88 @@ category: Base CSS
 ## Headings
 
 ```html_example
-<h1>Heading 1</h1>
-<h2>Heading 1</h2>
-<h3>Heading 1</h3>
+<p class="h1">Pizza 1</p>
+<p class="h2">Pizza 2</p>
+<p class="h3">Pizza 3</p>
+<p class="h4">Pizza 4</p>
+<p class="h5">Pizza 5</p>
+<p class="h6">Pizza 6</p>
 ```
 
-## Links
+##Scale
 
 ```html_example
-<a href="http://example.com">Example</a>
+<p class="f1">Focaccia</p>
+<p class="f2">Focaccia</p>
+<p class="f3">Focaccia</p>
+<p class="f4">Focaccia</p>
+<p class="f5">Focaccia</p>
+<p class="f6">Focaccia</p>
 ```
 
+```html_example
+<h1 class="f00-light">Potato chips</h1>
+<h1 class="f0-light">Potato chips</h1>
+<h1 class="f1-light">Potato chips</h1>
+<h1 class="f2-light">Potato chips</h1>
+<h1 class="f3-light">Potato chips</h1>
+```
+
+```html_example
+<p class="lh-default">
+  Bacon ipsum dolor amet tri-tip chicken kielbasa, cow swine beef corned beef ground round prosciutto hamburger porchetta sausage alcatra tail. Jowl chuck biltong flank meatball, beef short ribs. Jowl tenderloin ground round, short loin tri-tip ribeye picanha filet mignon pig chicken kielbasa t-bone fatback. Beef ribs meatball chicken corned beef salami.
+</p>
+<p class="lh-condensed">
+  Bacon ipsum dolor amet tri-tip chicken kielbasa, cow swine beef corned beef ground round prosciutto hamburger porchetta sausage alcatra tail. Jowl chuck biltong flank meatball, beef short ribs. Jowl tenderloin ground round, short loin tri-tip ribeye picanha filet mignon pig chicken kielbasa t-bone fatback. Beef ribs meatball chicken corned beef salami.
+</p>
+<p class="lh-condensed-ultra">
+  Bacon ipsum dolor amet tri-tip chicken kielbasa, cow swine beef corned beef ground round prosciutto hamburger porchetta sausage alcatra tail. Jowl chuck biltong flank meatball, beef short ribs. Jowl tenderloin ground round, short loin tri-tip ribeye picanha filet mignon pig chicken kielbasa t-bone fatback. Beef ribs meatball chicken corned beef salami.
+</p>
+```
+
+```html_example
+<p class="text-normal">Normal</p>
+<p class="text-italic">Italic</p>
+<p class="text-bold">Bold</p>
+<p class="text-uppercase">Uppercase</p>
+<p class="no-wrap">No wrap</p>
+<p class="ws-normal">Normal whitespace</p>
+<p class="wb-break-all">Line break long lines</p>
+<p class="text-underline">Text underline</p>
+<p class="no-underline">No underline</p>
+<p class="text-emphasized">Emphasized</p>
+<p class="text-small">Small</p>
+<p class="lead">Bacon ipsum dolor amet tri-tip chicken kielbasa, cow swine beef corned beef ground round prosciutto hamburger porchetta sausage alcatra tail.</p>
+<p class="text-mono">Monospace</p>
+<p class="user-select-none">User Select None</p>
+```
+
+```html_example
+<p class="text-left">Left align</p>
+<p class="text-center">Center</p>
+<p class="text-right">Right align</p>
+```
+
+```html_example
+<p class="text-left text-sm-center text-lg-right">Left in a small viewport, centered in mid-sized viewports, and right aligned in larger viewports</p>
+```
+
+```html_example
+<ul class="list-style-none">
+  <li>First list item</li>
+  <li>Second list item</li>
+  <li>Third list item</li>
+</ul>
+```
+
+```html_example
+<div class="bg-gray-dark p-5">
+  <h3 class="text-white text-shadow-dark">.text-shadow-dark helps white text stand out on dark or photographic backgrounds</h3>
+</div>
+<div class="bg-gray p-5">
+  <h3 class="text-shadow-light">.text-shadow-light creates an embossed effect for dark text</h3>
+</div>
+```
 */
 
 @import url(https://fonts.googleapis.com/css?family=Dosis:400,700,300);
@@ -30,35 +101,665 @@ body {
   font-size: 16px;
 }
 
-h1, .h1 {
+//@broccolini
+
+// Typography variables
+// stylelint-disable declaration-bang-space-before
+
+// Heading sizes - mobile
+// h4—h6 remain the same size on both mobile & desktop
+$h00-size-mobile: 40px !default;
+$h0-size-mobile: 32px !default;
+$h1-size-mobile: 26px !default;
+$h2-size-mobile: 22px !default;
+$h3-size-mobile: 18px !default;
+
+// Heading sizes - desktop
+$h00-size: 48px !default;
+$h0-size: 40px !default;
+$h1-size: 32px !default;
+$h2-size: 24px !default;
+$h3-size: 20px !default;
+$h4-size: 16px !default;
+$h5-size: 14px !default;
+$h6-size: 12px !default;
+
+$font-size-small: 12px !default;
+
+// Font weights
+$font-weight-bold: 600 !default;
+$font-weight-semibold: 500 !default;
+$font-weight-normal: 400 !default;
+$font-weight-light: 300 !default;
+
+// Line heights
+$lh-condensed-ultra: 1 !default;
+$lh-condensed: 1.25 !default;
+$lh-default: 1.5 !default;
+
+// Font stacks
+$body-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+
+// Monospace font stack
+$mono-font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace !default;
+
+// The base body size
+$body-font-size: 14px !default;
+$body-line-height: $lh-default !default;
+//© 2018 GitHub, Inc.
+
+//mixins
+// Text hiding for image based text replacement.
+// Higher performance than -9999px because it only renders
+// the size of the actual text, not a full 9999px box.
+@mixin hide-text() {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+
+// Heading mixins for use within components
+// These match heading utilities in utilities/typography
+@mixin h1 {
+  font-size: $h1-size;
+  font-weight: $font-weight-bold;
+}
+
+@mixin h2 {
+  font-size: $h2-size;
+  font-weight: $font-weight-bold;
+}
+
+@mixin h3 {
+  font-size: $h3-size;
+  font-weight: $font-weight-bold;
+}
+
+@mixin h4 {
+  font-size: $h4-size;
+  font-weight: $font-weight-bold;
+}
+
+@mixin h5 {
+  font-size: $h5-size;
+  font-weight: $font-weight-bold;
+}
+
+@mixin h6 {
+  font-size: $h6-size;
+  font-weight: $font-weight-bold;
+}
+
+// Responsive heading mixins
+// There are no responsive mixins for h4—h6 because they are small
+// and don't need to be smaller on mobile.
+@mixin f1-responsive {
+  font-size: $h1-size-mobile;
+
+  // 32px on desktop
+  @include breakpoint(md) { font-size: $h1-size; }
 
 }
 
-h2, .h2 {
+@mixin f2-responsive {
+  font-size: $h2-size-mobile;
+
+  // 24px on desktop
+  @include breakpoint(md) { font-size: $h2-size; }
+}
+
+@mixin f3-responsive {
+  font-size: $h3-size-mobile;
+
+  // 20px on desktop
+  @include breakpoint(md) { font-size: $h3-size; }
 
 }
 
-h3, .h3 {
+// These use the mixins from above for responsive heading sizes.
+// The following mixins can be used where it's convenient or necessary to
+// couple the responsive font-size with the font-weight.
+@mixin h1-responsive {
+  @include f1-responsive;
+  font-weight: $font-weight-bold;
+}
+
+@mixin h2-responsive {
+  @include f2-responsive;
+  font-weight: $font-weight-bold;
+}
+
+@mixin h3-responsive {
+  @include f3-responsive;
+  font-weight: $font-weight-bold;
+}
+
+// Layout variables
+// stylelint-disable declaration-bang-space-before
+
+// These are our margin and padding utility spacers. The default step size we
+// use is 8px. This gives us a key of:
+//    0 => 0px
+//    1 => 4px
+//    2 => 8px
+//    3 => 16px
+//    4 => 24px
+//    5 => 32px
+//    6 => 40px
+$spacer: 8px !default;
+$spacers: (
+  0,
+  round($spacer / 2),
+  $spacer,
+  $spacer * 2,
+  $spacer * 3,
+  $spacer * 4,
+  $spacer * 5
+) !default;
+
+// Aliases for easy use
+$spacer-0: nth($spacers, 1) !default; // 0
+$spacer-1: nth($spacers, 2) !default; // 4px
+$spacer-2: nth($spacers, 3) !default; // 8px
+$spacer-3: nth($spacers, 4) !default; // 16px
+$spacer-4: nth($spacers, 5) !default; // 24px
+$spacer-5: nth($spacers, 6) !default; // 32px
+$spacer-6: nth($spacers, 7) !default; // 40px
+
+// Em spacer variables
+$em-spacer-1: 0.0625em !default; // 1/16
+$em-spacer-2: 0.125em !default;  // 1/8
+$em-spacer-3: 0.25em !default;   // 1/4
+$em-spacer-4: 0.375em !default;  // 3/8
+$em-spacer-5: 0.5em !default;    // 1/2
+$em-spacer-6: 0.75em !default;   // 3/4
+
+// Fixed-width container variables
+$container-width: 980px !default;
+$grid-gutter:     10px !default;
+
+// Breakpoint widths
+$width-xs: 0;
+$width-sm: 544px;
+$width-md: 768px;
+$width-lg: 1012px;
+$width-xl: 1280px;
+
+// Responsive container widths
+$container-md: $width-md !default;
+$container-lg: $width-lg !default;
+$container-xl: $width-xl !default;
+
+// Breakpoints
+$breakpoints: (
+  // Small screen / phone
+  sm: $width-sm,
+  // Medium screen / tablet
+  md: $width-md,
+  // Large screen / desktop (980 + (12 * 2)) <= container + gutters
+  lg: $width-lg,
+  // Extra large screen / wide desktop
+  xl: $width-xl
+) !default;
+
+// -------- Grays --------
+$gray-000:        #fafbfc !default;
+$gray-100:        #f6f8fa !default;
+$gray-200:        #e1e4e8 !default;
+$gray-300:        #d1d5da !default;
+$gray-400:        #959da5 !default;
+$gray-500:        #6a737d !default;
+$gray-600:        #586069 !default;
+$gray-700:        #444d56 !default;
+$gray-800:        #2f363d !default;
+$gray-900:        #24292e !default; // body font color
+
+// -------- Blue --------
+$blue-000:        #f1f8ff !default;
+$blue-100:        #dbedff !default;
+$blue-200:        #c8e1ff !default;
+$blue-300:        #79b8ff !default;
+$blue-400:        #2188ff !default;
+$blue-500:        #0366d6 !default; // Default: Passes AA with #fff
+$blue-600:        #005cc5 !default;
+$blue-700:        #044289 !default;
+$blue-800:        #032f62 !default;
+$blue-900:        #05264c !default; // Passes with 1/2/300 blues
+
+// -------- Green --------
+$green-000:       #f0fff4 !default;
+$green-100:       #dcffe4 !default;
+$green-200:       #bef5cb !default;
+$green-300:       #85e89d !default;
+$green-400:       #34d058 !default;
+$green-500:       #28a745 !default; // Default. passes AA Large
+$green-600:       #22863a !default; // Text green, passes AA on #fff
+$green-700:       #176f2c !default;
+$green-800:       #165c26 !default;
+$green-900:       #144620 !default;
+
+// -------- Yellow --------
+$yellow-000:      #fffdef !default;
+$yellow-100:      #fffbdd !default;
+$yellow-200:      #fff5b1 !default;
+$yellow-300:      #ffea7f !default;
+$yellow-400:      #ffdf5d !default;
+$yellow-500:      #ffd33d !default;
+$yellow-600:      #f9c513 !default;
+$yellow-700:      #dbab09 !default;
+$yellow-800:      #b08800 !default;
+$yellow-900:      #735c0f !default;
+
+// -------- Orange --------
+$orange-000:      #fff8f2 !default;
+$orange-100:      #ffebda !default;
+$orange-200:      #ffd1ac !default;
+$orange-300:      #ffab70 !default;
+$orange-400:      #fb8532 !default;
+$orange-500:      #f66a0a !default; // Default. passes AA Large with #fff
+$orange-600:      #e36209 !default;
+$orange-700:      #d15704 !default;
+$orange-800:      #c24e00 !default;
+$orange-900:      #a04100 !default;
+
+// -------- Red --------
+$red-000:         #ffeef0 !default;
+$red-100:         #ffdce0 !default;
+$red-200:         #fdaeb7 !default;
+$red-300:         #f97583 !default;
+$red-400:         #ea4a5a !default;
+$red-500:         #d73a49 !default; // Default. passes AA
+$red-600:         #cb2431 !default;
+$red-700:         #b31d28 !default;
+$red-800:         #9e1c23 !default;
+$red-900:         #86181d !default;
+
+// -------- Purple --------
+$purple-000:      #f5f0ff !default;
+$purple-100:      #e6dcfd !default;
+$purple-200:      #d1bcf9 !default;
+$purple-300:      #b392f0 !default;
+$purple-400:      #8a63d2 !default;
+$purple-500:      #6f42c1 !default; // passes AA with #fff
+$purple-600:      #5a32a3 !default;
+$purple-700:      #4c2889 !default;
+$purple-800:      #3a1d6e !default;
+$purple-900:      #29134e !default;
+
+// -------- Fades --------
+// Black based on same hue as $gray-900
+$black: #1b1f23 !default;
+$white: #fff !default;
+
+$black-fade-15:      rgba($black, 0.15) !default;
+$black-fade-30:      rgba($black, 0.3) !default;
+$black-fade-50:      rgba($black, 0.5) !default;
+$black-fade-70:      rgba($black, 0.7) !default;
+$black-fade-85:      rgba($black, 0.85) !default;
+
+$white-fade-15:      rgba($white, 0.15) !default;
+$white-fade-30:      rgba($white, 0.3) !default;
+$white-fade-50:      rgba($white, 0.5) !default;
+$white-fade-70:      rgba($white, 0.7) !default;
+$white-fade-85:      rgba($white, 0.85) !default;
+
+// -------- Color defaults --------
+$red:         $red-500 !default;
+$purple:      $purple-500 !default;
+$blue:        $blue-500 !default;
+$green:       $green-500 !default;
+$yellow:      $yellow-500 !default;
+$orange:      $orange-500 !default;
+
+$gray-dark:   $gray-900 !default;
+$gray-light:  $gray-400 !default;
+$gray:        $gray-500 !default;
+// Color variables
+// stylelint-disable declaration-bang-space-before
+
+// State indicators.
+$status-pending:    desaturate($yellow-700, 15%) !default;
+
+// Repository type colors
+// Should be able to deprecate these in future
+$repo-private-text: $black-fade-70 !default;
+$repo-private-bg:   $yellow-000 !default;
+$repo-private-icon: transparentize($yellow-900, 0.5) !default;
+
+// Highlight used for things like search
+$highlight-yellow: rgba(255, 247, 140, 0.5);
+
+// Border colors
+$border-black-fade:  $black-fade-15 !default;
+
+$border-blue:        $blue-500 !default;
+$border-blue-light:  $blue-200 !default;
+
+$border-green:       $green-400 !default;
+$border-green-light: desaturate($green-300, 40%) !default;
+
+$border-purple:      $purple !default;
+
+$border-red:         $red !default;
+$border-red-light:   desaturate($red-300, 60%) !default;
+
+$border-purple:      $purple !default;
+
+$border-yellow:      desaturate($yellow-300, 60%) !default;
+
+$border-gray-dark:   $gray-300 !default;
+$border-gray-darker: $gray-700 !default;
+$border-gray-light:  lighten($gray-200, 3%) !default;
+$border-gray:        $gray-200 !default;
+
+// Background colors
+$bg-blue-light:     $blue-000 !default;
+$bg-blue:           $blue-500 !default;
+$bg-gray-dark:      $gray-900 !default;
+$bg-gray-light:     $gray-000 !default;
+$bg-gray:           $gray-100 !default;
+$bg-green:          $green-500 !default;
+$bg-green-light:    $green-100 !default;
+$bg-orange:         $orange-700 !default;
+$bg-purple:         $purple-500 !default;
+$bg-purple-light:   $purple-000 !default;
+$bg-red:            $red-500 !default;
+$bg-red-light:      $red-100 !default;
+$bg-white:          $white !default;
+$bg-yellow:         $yellow-500 !default;
+$bg-yellow-light:   $yellow-200 !default;
+
+// Text colors
+$text-blue:         $blue-500 !default;
+$text-gray-dark:    $gray-900 !default;
+$text-gray-light:   $gray-500 !default;
+$text-gray:         $gray-600 !default;
+$text-green:        $green-500 !default;
+$text-orange:       $orange-900 !default;
+$text-orange-light: $orange-600 !default;
+$text-purple:       $purple !default;
+$text-red:          $red-600 !default;
+$text-white:        $white !default;
+//breakpoints
+// Responsive media queries
+
+@mixin breakpoint($breakpoint) {
+  // Retrieves the value from the key
+  $value: map-get($breakpoints, $breakpoint);
+
+  // If the key exists in the map
+  @if $value != null {
+    // Prints a media query based on the value
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+      + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+// Retina media query
+
+@mixin retina-media-query {
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-moz-min-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+// Clearfix
+//
+// Clears floats via mixin.
+
+@mixin clearfix {
+  &::before {
+    display: table;
+    content: "";
+  }
+
+  &::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+}
+// stylelint-disable block-closing-brace-space-before, primer/selector-no-utility, selector-list-comma-newline-after
+// stylelint-disable comment-empty-line-before
+// Type scale variables found in primer-support/lib/variables.scss
+// $h00-size-mobile: 40px;
+// $h0-size-mobile: 32px;
+// $h1-size-mobile: 26px;
+// $h2-size-mobile: 22px;
+// $h3-size-mobile: 18px;
+// $h00-size: 48px;
+// $h0-size: 40px;
+// $h1-size: 32px;
+// $h2-size: 24px;
+// $h3-size: 20px;
+// $h4-size: 16px;
+// $h5-size: 14px;
+// $h6-size: 12px;
+
+/* Set the font size to 26px */
+.h1 {
+  font-size: $h1-size-mobile !important;
+
+  @include breakpoint(md) { font-size: $h1-size !important; }
 
 }
 
+/* Set the font size to 22px */
+.h2 {
+  font-size: $h2-size-mobile !important;
 
-// Links
-a {
-  color: #FF0050;
-}
-a:hover,
-a:active {
-  color: #E80049;
+  @include breakpoint(md) { font-size: $h2-size !important; }
 }
 
+/* Set the font size to 18px */
+.h3 {
+  font-size: $h3-size-mobile !important;
 
-// Text
-p {
+  @include breakpoint(md) { font-size: $h3-size !important; }
+
 }
-small {
-  font-size: 0.5rem;
-  line-height: 1;
+
+/* Set the font size to #{$h4-size} */
+.h4 {
+  font-size: $h4-size !important;
+
 }
-strong {
+
+/* Set the font size to #{$h5-size} */
+.h5 { font-size: $h5-size !important; }
+
+// Does not include color property like typography base
+// styles, color should be applied with color utilities.
+/* Set the font size to #{$h6-size} */
+.h6 { font-size: $h6-size !important; }
+
+// Heading utilities
+.h1, .h2, .h3, .h4, .h5, .h6 { font-weight: $font-weight-bold !important; }
+
+// Type utilities that match type sale
+/* Set the font size to 26px */
+.f1 {
+  font-size: $h1-size-mobile !important;
+
+  @include breakpoint(md) { font-size: $h1-size !important; }
+
+}
+
+/* Set the font size to 22px */
+.f2 {
+  font-size: $h2-size-mobile !important;
+
+  @include breakpoint(md) { font-size: $h2-size !important; }
+}
+
+/* Set the font size to 18px */
+.f3 {
+  font-size: $h3-size-mobile !important;
+
+  @include breakpoint(md) { font-size: $h3-size !important; }
+
+}
+
+/* Set the font size to #{$h4-size} */
+.f4 {
+  font-size: $h4-size !important;
+
+  @include breakpoint(md) { font-size: $h4-size !important; }
+
+}
+
+/* Set the font size to #{$h5-size} */
+.f5 { font-size: $h5-size !important; }
+/* Set the font size to #{$h6-size} */
+.f6 { font-size: $h6-size !important; }
+
+// Type utils with light weight that match type scale
+/* Set the font size to 40px and weight to light */
+.f00-light {
+  font-size: $h00-size-mobile !important;
+  font-weight: $font-weight-light !important;
+
+  @include breakpoint(md) { font-size: $h00-size !important; }
+
+}
+
+/* Set the font size to 32px and weight to light */
+.f0-light {
+  font-size: $h0-size-mobile !important;
+  font-weight: $font-weight-light !important;
+
+  @include breakpoint(md) { font-size: $h0-size !important; }
+
+}
+
+/* Set the font size to 26px and weight to light */
+.f1-light {
+  font-size: $h1-size-mobile !important;
+  font-weight: $font-weight-light !important;
+
+  @include breakpoint(md) { font-size: $h1-size !important; }
+
+}
+
+/* Set the font size to 22px and weight to light */
+.f2-light {
+  font-size: $h2-size-mobile !important;
+  font-weight: $font-weight-light !important;
+
+  @include breakpoint(md) { font-size: $h2-size !important; }
+
+}
+// Same size and weight as .lead but without color property
+/* Set the font size to 18px and weight to light */
+.f3-light {
+  font-size: $h3-size-mobile !important;
+  font-weight: $font-weight-light !important;
+
+  @include breakpoint(md) { font-size: $h3-size !important; }
+
+}
+
+// Smallest text size
+/* Set the font size to ${#h6-size} */
+.text-small { font-size: $h6-size !important; } // 12px
+
+/* Large leading paragraphs */
+.lead {
+  margin-bottom: 30px;
+  font-size: $h3-size;
+  font-weight: $font-weight-light;
+  color: $gray-600;
+}
+
+// Line-height variations
+// Close to commonly used line-heights. Most line-heights
+// combined with type size equate to whole pixels.
+// Will be improved with future typography scale updates.
+/* Set the line height to ultra condensed */
+.lh-condensed-ultra { line-height: $lh-condensed-ultra !important; }
+/* Set the line height to condensed */
+.lh-condensed { line-height: $lh-condensed !important; }
+/* Set the line height to default */
+.lh-default { line-height: $lh-default !important; }
+/* Set the line height to zero */
+.lh-0 { line-height: 0 !important; }
+
+// Text alignments
+/* Text align to the right */
+.text-right { text-align: right !important; }
+/* Text align to the left */
+.text-left { text-align: left !important; }
+/* Text align to the center */
+.text-center { text-align: center !important; }
+
+// Responsive text alignment
+// .text-md-left, .text-lg-right, ...
+@each $breakpoint in map-keys($breakpoints) {
+  @include breakpoint($breakpoint) {
+    .text-#{$breakpoint}-right { text-align: right !important; }
+    .text-#{$breakpoint}-left { text-align: left !important; }
+    .text-#{$breakpoint}-center { text-align: center !important; }
+  }
+}
+
+// Text styles
+/* Set the font weight to normal */
+.text-normal { font-weight: $font-weight-normal !important; }
+/* Set the font weight to bold */
+.text-bold { font-weight: $font-weight-bold !important;}
+/* Set the font to italic */
+.text-italic { font-style: italic !important; }
+/* Make text uppercase */
+.text-uppercase { text-transform: uppercase !important; }
+/* Underline text */
+.text-underline { text-decoration: underline !important; }
+/* Don't underline text */
+.no-underline { text-decoration: none !important; }
+/* Don't wrap white space */
+.no-wrap { white-space: nowrap !important; }
+/* Normal white space */
+.ws-normal { white-space: normal !important; }
+/* Allow long lines with no spaces to line break */
+.wb-break-all { word-break: break-all !important; }
+
+.text-emphasized {
+  font-weight: $font-weight-bold;
+  color: $text-gray-dark;
+}
+
+// List styles
+.list-style-none { list-style: none !important; }
+
+// Text Shadows
+/* Add a dark text shadow */
+.text-shadow-dark {
+  text-shadow: 0 1px 1px rgba($black, 0.25), 0 1px 25px rgba($black, 0.75);
+}
+/* Add a light text shadow */
+.text-shadow-light {
+  text-shadow: 0 1px 0 rgba($white, 0.5);
+}
+
+/* Set to monospace font */
+.text-mono {
+  font-family: $mono-font;
+}
+
+/* Disallow user from selecting text */
+.user-select-none {
+  user-select: none !important;
 }

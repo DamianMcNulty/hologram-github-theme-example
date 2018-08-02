@@ -20,7 +20,9 @@
     "browser-sync:styleguide": "browser-sync start --server styleguide --files 'styleguide/**/*'",
     "watch": "parallelshell 'npm run watch:copy' 'npm run watch:css'",
     "serve": "parallelshell 'npm run browser-sync' 'npm run watch'",
-    "serve:styleguide": "parallelshell 'npm run browser-sync:styleguide' 'npm run watch:styleguide'"
+    "serve:styleguide": "parallelshell 'npm run browser-sync:styleguide' 'npm run watch:styleguide'",
+    "storybook": "start-storybook -h $IP -p $PORT",
+    "build-storybook": "build-storybook"
   },
   "author": "Mathis Hofer <hofer@puzzle.ch>",
   "license": "MIT",
@@ -31,6 +33,10 @@
     "node-sass": "^3.4.2",
     "parallelshell": "^2.0.0",
     "rimraf": "^2.4.4",
-    "watch": "^0.16.0"
-  }
+    "watch": "^0.16.0",
+    "@storybook/html": "^4.0.0-alpha.14",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0"
+  },
+  "dependencies": {}
 }

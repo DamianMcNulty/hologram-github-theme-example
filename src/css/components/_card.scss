@@ -31,18 +31,13 @@ A card
 
 /// @group card component
 .Card {
-    width: 30%;
-    margin: 0 auto;
-}
-
-/// @group card component
-.Card__link {
-    text-align: center;
+	width: 30%;
+	margin: 0 auto;
 }
 
 /// @group card component
 .Card__img {
-    display: inline-block;
-    width: 100%;
-    height: 100px;
+	display: inline-block;
+	width: 100%;
+	height: 100px;
 }
