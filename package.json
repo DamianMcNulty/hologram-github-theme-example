@@ -10,7 +10,7 @@
     "copy:images": "copyfiles -u 1 'src/**/*.{png,jpg,svg}' dist",
     "copy": "npm run copy:html && npm run copy:js && npm run copy:css && npm run copy:images",
     "watch:copy": "watch 'npm run copy' src",
-    "css:sass": "node-sass --output-style compressed src/css/main.scss dist/css/main.css",
+    "css:sass": "node-sass --include-path node_modules --output-style compressed src/css/main.scss dist/css/main.css",
     "css": "npm run css:sass",
     "watch:css": "watch -d -u --wait=0 'npm run css' src/css",
     "styleguide": "hologram -c hologram_config.yml",
@@ -38,5 +38,7 @@
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "primer": "^10.8.0"
+  }
 }
